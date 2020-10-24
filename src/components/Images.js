@@ -8,12 +8,12 @@ const Images = () => {
         <div className="gallery">
             {docs && docs.map(element => {
         return (
-        <div layout className="image-wrap"> 
+        <div layout className="image-wrap" key={element.id} > 
         <img
-        src={element.url} 
-        key={element.id} 
-        alt={element.name} 
-        ></img>
+            src={element.url} 
+            
+            alt={element.name} 
+        />
         </div>);
     })}
         </div>
