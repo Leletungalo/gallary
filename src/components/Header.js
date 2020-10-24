@@ -1,10 +1,13 @@
 import React from 'react'
-
+import {AppBar,Typography} from "@material-ui/core"
 const Header = () => {
     return (
-        <div className="top-bar">
-            <h1>My Gallary</h1>
-        </div>
+        <AppBar position="static"  className="top-bar" color="secondary">
+            <Typography
+                variant="h5" 
+                >My Gallary
+            </Typography>
+        </AppBar>
     )
 }
 

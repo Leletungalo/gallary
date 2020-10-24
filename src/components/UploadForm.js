@@ -1,9 +1,11 @@
 import React,{useState} from 'react'
 import Progress from './Progress';
+import {Typography,makeStyles} from "@material-ui/core"
 
 const UploadForm = () => {
     const [file, setFile] = useState(null);
     const [error, setError] = useState(null);
+    const classes = useStyles();
 
     const handleChange = e => {
         const selected = e.target.files[0];
@@ -19,11 +21,15 @@ const UploadForm = () => {
     }
 
     return (
-        <div className="upload-form">
-            <h2>Up load Image</h2>
-            <form>
-                <input type="file" onChange={handleChange} />
-            </form>
+        <div className={classes.root}>
+            <div>
+                <Typography className={classes.heading} variant="h3">
+                    Up load Image
+                </Typography>
+                <form>
+                    <input type="file" onChange={handleChange} />
+                </form>
+            </div>
            <div>
             {error && <div>{error}</div>}
             {file && <div>{file.name}</div>}
@@ -32,5 +38,15 @@ const UploadForm = () => {
         </div>
     )
 }
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+  },
+  heading:{
+    textAlign:"center",
+    margin:".5em 0"
+  }
+}));
 
 export default UploadForm
