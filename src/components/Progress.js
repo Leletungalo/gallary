@@ -1,8 +1,14 @@
-import React from 'react';
-import useStorage from "../firebase/useStorage"
+import React,{useEffect} from 'react';
+import useStorage from "../hooks/useStorage"
 
 function Progress({file,setFile}) {
     const {progress,url} = useStorage(file);
+
+    useEffect(() => {
+        if(url){
+            setFile(null);
+        }
+    },[url,setFile]);
 
     return (
         <div style={{
@@ -12,7 +18,6 @@ function Progress({file,setFile}) {
             borderRadius: "10%",
             transition:"all 1s ease-out"
         }}>
-            <h2>{progress,url}</h2>
         </div>
     )
 }
