@@ -6,7 +6,7 @@ const useStorage = file =>{
     const [error,setError] = useState(null);
 
     useEffect(() => {
-        const storageRef = projectStorage.ref(file.name)
+        const storageRef = projectStorage.ref(file.name);
         const firestoreRef = projectFirestore.collection("images");
         storageRef.put(file).on("state_changed", snap =>{
             let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;

@@ -2,11 +2,10 @@ import React from 'react';
 import firestore from "../hooks/useFirestore";
 import {Avatar,makeStyles} from "@material-ui/core"
 
-const Images = ({openModel}) => {
+const Images = ({setSrc}) => {
     const classes = useStyles();
     const { docs } = firestore("images");
     console.log(docs);
-    console.log(openModel)
     return (
         <div className="gallery">
             {docs && docs.map(element => {
@@ -16,7 +15,7 @@ const Images = ({openModel}) => {
                         className={classes.image}
                         key={element.id} >
                         <img
-                            onClick={() => openModel(element.url) }
+                            onClick={() => setSrc(element.url) }
                             src={element.url}
                             alt={element.name}
                         />

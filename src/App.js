@@ -11,11 +11,6 @@ import Model from './components/Model';
 
 function App() {
   const [src, setSrc] = useState(null);
-  
-  const openModel = (srcName) =>{
-    console.log(srcName);
-    setSrc(srcName)
-  } 
 
   return (
     <Router>
@@ -23,10 +18,6 @@ function App() {
         <Header />
         <Switch>
           <Route exact path="/">
-            <UploadForm />
-            <Images />
-          </Route>
-          <Route exact path="/login">
             <Login />
           </Route>
             <Route exact path="/rigister">
@@ -34,7 +25,7 @@ function App() {
             </Route>
           <Route exact path="/images">
             <UploadForm />
-            <Images openModel={openModel}/>
+            <Images setSrc={setSrc} />
             {src &&  <Model src={src} setSrc={setSrc} />}
           </Route>
         </Switch>
