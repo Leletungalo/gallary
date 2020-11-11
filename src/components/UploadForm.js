@@ -23,7 +23,7 @@ const UploadForm = () => {
     return (
         <div className={classes.root}>
             <div>
-                <Typography className={classes.heading} variant="h3">
+                <Typography className={classes.heading} variant="h5">
                     Up load Image
                 </Typography>
                 <form>
@@ -42,10 +42,13 @@ const UploadForm = () => {
 const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
+    width:"100%",
+    justifyContent:"center",
+    alignItems:"center",
+    flexDirection:"column"
   },
   heading:{
     textAlign:"center",
-    margin:".5em 0"
   }
 }));
 

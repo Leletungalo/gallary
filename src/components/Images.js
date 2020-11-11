@@ -1,37 +1,40 @@
-import React from 'react';
+import React,{useState} from 'react';
 import firestore from "../hooks/useFirestore";
-import {Avatar,makeStyles} from "@material-ui/core";
-import UploadForm from "./UploadForm"
-const Images = ({setSrc}) => {
-    const classes = useStyles();
+import {Avatar} from "@material-ui/core";
+import UploadForm from "./UploadForm";
+import Model from "./Model"
+const Images = () => {
     const { docs } = firestore("images");
- //   const docs = [];
-    console.log(setSrc)
+    const [openModel,setOpenModel] = useState("");
+    const open = (url) =>{
+        setOpenModel(<Model src={url} setOpenModel={setOpenModel} />)
+    }
+
     return (
-        <div className="gallery">
+        <div >
             <UploadForm />
-            {docs && docs.map(element => {
-                return (
-                    <Avatar
-                        variant="rounded"
-                        className={classes.image}
-                        key={element.id} >
-                        <img
-                            onClick={() => setSrc(element.url) }
-                            src={element.url}
-                            alt={element.name}
-                        />
-                    </Avatar>);
+            <div className="gallery">
+                {docs && docs.map(element => {
+                    return (
+                        <Avatar
+                            variant="rounded"
+                            className="images"
+                            key={element.id} >
+                            <img
+                                style={{
+                                    width:"100%",
+                                    height:"100%"
+                                }}
+                                onClick={() => open(element.url) }
+                                src={element.url}
+                                alt={element.name}
+                            />
+                        </Avatar>);
                 })}
+            </div>
+            {openModel}
         </div>
     )
 }
-
-const useStyles = makeStyles((theme) => ({
-  image:{
-      width:"100%",
-      height:"100%"
-  }
-}));
 
 export default Images

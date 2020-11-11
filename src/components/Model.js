@@ -1,15 +1,14 @@
 import React from 'react'
 
-const Model = ({src,setSrc}) => {
-    console.log(src);
+const Model = ({src,setOpenModel}) => {
     
     const close = (e) =>{
         if(e.target.getAttribute("name") === "backdrop"){
-            setSrc(null);
+            setOpenModel("");
         }
     }
     return (
-        <div name="backdrop" className="backgrop" onClick={close}>
+        <div name="backdrop" className="backgrop" onClick={close} >
             <div className="model">
                 <img alt="model name" src={src} />
             </div>

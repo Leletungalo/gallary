@@ -1,5 +1,5 @@
 import React,{useState,useContext} from 'react';
-import {Button,TextField, Typography} from "@material-ui/core";
+import {Button,TextField} from "@material-ui/core";
 import AuthContext from "../Auth/AuthContext";
 
 const Rigister = () => {
@@ -7,7 +7,6 @@ const Rigister = () => {
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
-    const [errr, setErrr] = useState("");
     
     const handdleChange = async (e) =>{
         e.preventDefault();
@@ -19,11 +18,11 @@ const Rigister = () => {
 
     return (
         <div className="rigister">
-            {errr && 
+            {/*errr && 
                 <Typography
                     className="errMessage"
                     variant="h6"
-                >{errr}</Typography>}
+            >{errr}</Typography>*/}
                 <form >
                     <TextField
                         className="inputs" 

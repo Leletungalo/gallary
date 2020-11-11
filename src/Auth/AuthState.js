@@ -12,7 +12,6 @@ const AuthState = props =>{
 
     useEffect(() =>{
         const unsub = projectAuth.onAuthStateChanged(user =>{
-            console.log(user);
             disparch({
                 type: SET_USER,
                 payload: user
