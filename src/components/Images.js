@@ -1,13 +1,15 @@
 import React from 'react';
 import firestore from "../hooks/useFirestore";
-import {Avatar,makeStyles} from "@material-ui/core"
-
+import {Avatar,makeStyles} from "@material-ui/core";
+import UploadForm from "./UploadForm"
 const Images = ({setSrc}) => {
     const classes = useStyles();
     const { docs } = firestore("images");
-    console.log(docs);
+ //   const docs = [];
+    console.log(setSrc)
     return (
         <div className="gallery">
+            <UploadForm />
             {docs && docs.map(element => {
                 return (
                     <Avatar
@@ -20,7 +22,7 @@ const Images = ({setSrc}) => {
                             alt={element.name}
                         />
                     </Avatar>);
-            })}
+                })}
         </div>
     )
 }

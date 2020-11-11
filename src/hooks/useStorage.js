@@ -8,7 +8,7 @@ const useStorage = file =>{
     useEffect(() => {
         const storageRef = projectStorage.ref(file.name);
         const firestoreRef = projectFirestore.collection("images");
-        storageRef.put(file).on("state_changed", snap =>{
+        const unsub = storageRef.put(file).on("state_changed", snap =>{
             let percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
             setProgress(percentage)
         }, err =>{
@@ -23,6 +23,7 @@ const useStorage = file =>{
             setUrl(url);
         }
     )
+    return () => unsub()
     },[file]);
 
    return {progress,url,error}

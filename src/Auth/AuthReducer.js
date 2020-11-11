@@ -5,8 +5,8 @@ export default (state, action) => {
     switch(type){
         case SET_USER:
             return {
+                ...state,
                 user: payload,
-                email: payload.email
             }
         default:
             return state;

@@ -1,76 +1,60 @@
-import React,{useState,useContext} from 'react'
-import {projectAuth} from "../firebase/config";
-import {Redirect} from "react-router-dom";
-import {Button,TextField, makeStyles} from "@material-ui/core";
+import React,{useState,useContext} from 'react';
+import {Button,TextField, Typography} from "@material-ui/core";
 import AuthContext from "../Auth/AuthContext";
 
 const Rigister = () => {
-    const {setUser} = useContext(AuthContext);    
-    const classes = useStayles();
-    const [compo,setComp] = useState(false);
+    const {signUp} = useContext(AuthContext);  
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [password,setPassword] = useState("");
+    const [errr, setErrr] = useState("");
+    
     const handdleChange = async (e) =>{
         e.preventDefault();
         console.log(name,email,password);
         if(email !=="" && password !==""){
-            try{
-            const user = await projectAuth.createUserWithEmailAndPassword(email,password);
-            console.log(user);
-            setUser(user.user);
-            setComp(true);
-            }catch(err){
-                console.error(err);
-            }
+           signUp(email,password);
         }
     }
-    if(compo){
-        return(<Redirect to="/images"/>)
-    }else{
+
     return (
         <div className="rigister">
-                <form className={classes.myform}>
-                    <TextField 
+            {errr && 
+                <Typography
+                    className="errMessage"
+                    variant="h6"
+                >{errr}</Typography>}
+                <form >
+                    <TextField
+                        className="inputs" 
                         color="secondary" 
                         label="Name" 
-                        className={classes.input} 
                         onChange={e => setName(e.target.value)} 
                         value={name} 
-                        variant="outlined"/>
+
+                        />
                         
                     <TextField
+                        className="inputs"
                         label="Email"
                         color="secondary" 
-                        className={classes.input} 
                         onChange={e => setEmail(e.target.value)} 
                         value={email} 
-                        variant="outlined"/>
+                        />
                     <TextField
+                        className="inputs"
                         color="secondary"
                         label="Password" 
-                        className={classes.input} 
                         onChange={e => setPassword(e.target.value)} 
                         value={password} 
-                        variant="outlined"/>
-                    <Button variant="contained" color="secondary" onClick={handdleChange} >
-                        Submit
-                    </Button>
-                </form>
-            </div>
-        )
-    }
-}
-
-const useStayles = makeStyles((theme) => ({
-    myform:{
-        padding: "1em",
-        backgroundColor: "#3F51B5"
-    },
-    input:{
-        backgroundColor: "back",
-        fontSize: "1.3rem"
-    }
-}))
+                        />
+                    <div className="buttonwrap">
+                        <Button variant="contained" color="secondary" onClick={handdleChange} >
+                            Submit
+                        </Button>
+                    </div>
+            </form>
+        </div>
+    )}
 
 export default Rigister
